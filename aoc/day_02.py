@@ -23,23 +23,15 @@ def cube_conundrum(records: str) -> tuple[int, int]:
             quantity, color = game_set.split(" ")
             quantity = int(quantity)
 
-            if color == "red":
-                if quantity > 12:
-                    game_id = 0
-                if quantity > red_max:
-                    red_max = quantity
-            elif color == "green":
-                if quantity > 13:
-                    game_id = 0
-                if quantity > green_max:
-                    green_max = quantity
-            elif color == "blue":
-                if quantity > 14:
-                    game_id = 0
-                if quantity > blue_max:
-                    blue_max = quantity
+            if color == "red" and quantity > red_max:
+                red_max = quantity
+            elif color == "green" and quantity > green_max:
+                green_max = quantity
+            elif color == "blue" and quantity > blue_max:
+                blue_max = quantity
 
-        valid_sum += game_id
+        if red_max <= 12 and green_max <= 13 and blue_max <= 14:
+            valid_sum += game_id
         power_sum += red_max * green_max * blue_max
 
     return valid_sum, power_sum
