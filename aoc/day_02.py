@@ -22,8 +22,7 @@ def cube_conundrum(records: str) -> tuple[int, int]:
 
             need[color] = max(need[color], int(quantity))
 
-        if need["red"] <= 12 and need["green"] <= 13 and need["blue"] <= 14:
-            valid_sum += game_id
+        valid_sum += game_id * (need["red"] <= 12 and need["green"] <= 13 and need["blue"] <= 14)
         power_sum += need["red"] * need["green"] * need["blue"]
 
     return valid_sum, power_sum
