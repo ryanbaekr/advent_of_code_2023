@@ -3,20 +3,20 @@
 import re
 
 def trebuchet(document: str, as_word: bool) -> int:
-    """Take a document and return the appriate value"""
+    """Take a document and return the appropriate value"""
 
     if as_word:
         document = (
             document
-            .replace("one",   "one1one")
-            .replace("two",   "two2two")
-            .replace("three", "three3three")
-            .replace("four",  "four4four")
-            .replace("five",  "five5five")
-            .replace("six",   "six6six")
-            .replace("seven", "seven7seven")
-            .replace("eight", "eight8eight")
-            .replace("nine",  "nine9nine")
+            .replace("eight", "e8t")
+            .replace("one",   "o1")
+            .replace("two",   "2")
+            .replace("three", "3")
+            .replace("four",  "4")
+            .replace("five",  "5")
+            .replace("six",   "6")
+            .replace("nine",  "9")
+            .replace("seven", "7")
         )
 
     document = re.sub(r"[^\d\n]", "", document)
