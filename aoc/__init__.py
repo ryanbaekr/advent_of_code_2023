@@ -6,3 +6,4 @@ from aoc.day_03 import gear_ratios
 from aoc.day_04 import scratchcards
 from aoc.day_05 import if_you_give_a_seed_a_fertilizer
 from aoc.day_06 import wait_for_it
+from aoc.day_07 import camel_cards
