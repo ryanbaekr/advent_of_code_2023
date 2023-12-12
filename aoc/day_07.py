@@ -2,7 +2,7 @@
 
 from collections import Counter
 
-def camel_cards(hands: str, as_wild:bool) -> int:
+def camel_cards(hands: str, as_wild: bool) -> int:
     """Take the hands and return the appropriate value"""
 
     hands = (
@@ -36,8 +36,7 @@ def camel_cards(hands: str, as_wild:bool) -> int:
             type_pools[-4].append(hand)
         else:
             temp_hand = hand.replace("1", "")
-            counter = dict(Counter(temp_hand))
-            kinds = list(counter.values())
+            kinds = list(Counter(temp_hand).values())
             type_pools[len(kinds) - max(kinds) - len(hand) + len(temp_hand)].append(hand)
 
     hand_list = []
