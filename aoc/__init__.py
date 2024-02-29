@@ -11,3 +11,4 @@ from aoc.day_08 import haunted_wasteland
 from aoc.day_09 import mirage_maintenance
 from aoc.day_10 import pipe_maze
 from aoc.day_11 import cosmic_expansion
+from aoc.day_12 import hot_springs
