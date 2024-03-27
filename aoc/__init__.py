@@ -14,3 +14,4 @@ from aoc.day_11 import cosmic_expansion
 from aoc.day_12 import hot_springs
 from aoc.day_13 import point_of_incidence
 from aoc.day_14 import parabolic_reflector_dish
+from aoc.day_15 import lens_library
