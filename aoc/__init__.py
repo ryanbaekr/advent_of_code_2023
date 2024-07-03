@@ -17,3 +17,4 @@ from aoc.day_14 import parabolic_reflector_dish
 from aoc.day_15 import lens_library
 from aoc.day_16 import the_floor_will_be_lava
 from aoc.day_17 import clumsy_crucible
+from aoc.day_18 import lavaduct_lagoon
