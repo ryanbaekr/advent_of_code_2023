@@ -1,7 +1,7 @@
 """Processing for Day 19"""
 
-def aplenty(workflows: str) -> int:
-    """Take the workflows and return the appropriate value"""
+def aplenty(workflows: str) -> tuple[int, int]:
+    """Take the workflows and return the appropriate values"""
 
     workflows, ratings = workflows.split("\n\n")
 

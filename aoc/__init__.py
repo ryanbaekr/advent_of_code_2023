@@ -19,3 +19,4 @@ from aoc.day_16 import the_floor_will_be_lava
 from aoc.day_17 import clumsy_crucible
 from aoc.day_18 import lavaduct_lagoon
 from aoc.day_19 import aplenty
+from aoc.day_20 import pulse_propagation
