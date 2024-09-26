@@ -9,11 +9,11 @@ def cube_conundrum(records: str) -> tuple[int, int]:
     power_sum = 0
 
     for line in lines:
-        line = line.split(": ")
+        parsed_line = line.split(": ")
 
-        game_id = int(line[0].split(" ")[-1])
+        game_id = int(parsed_line[0].split(" ")[-1])
 
-        game_sets = line[1].replace(";", ",").split(", ")
+        game_sets = parsed_line[1].replace(";", ",").split(", ")
 
         need = {"red": 0, "green": 0, "blue": 0}
 

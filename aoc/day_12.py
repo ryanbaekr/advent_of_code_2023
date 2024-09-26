@@ -17,15 +17,15 @@ def hot_springs(records: str, folded: bool) -> int:
         string = re.sub(r"\.+", ".", string.strip("."))
         strings = string.split(".")
 
-        groups = [int(g) for g in groups.split(",")]
+        groups_list = [int(g) for g in groups.split(",")]
 
-        arrangements += _check_next(tuple(strings[::-1]), tuple(groups[::-1]))
+        arrangements += _check_next(tuple(strings[::-1]), tuple(groups_list[::-1]))
 
     return arrangements
 
 
 @functools.lru_cache(maxsize=512)
-def _check_next(strings, groups):
+def _check_next(strings: tuple[str, ...], groups: tuple[int, ...]) -> int:
     """Function to recurse with"""
 
     if not groups:

@@ -13,8 +13,8 @@ def scratchcards(tickets: str) -> tuple[int, int]:
     scrots = [1] * len(lines)
 
     for l_num, line in enumerate(lines):
-        line = line.split(": ")[-1].split(" | ")
-        matches = len(set(line[0].split(" ")) & set(line[1].split(" ")))
+        parsed_line = line.split(": ")[-1].split(" | ")
+        matches = len(set(parsed_line[0].split(" ")) & set(parsed_line[1].split(" ")))
         points += int(2**(matches - 1))
         for jdx in range(l_num + 1, matches + l_num + 1):
             scrots[jdx] += scrots[l_num]

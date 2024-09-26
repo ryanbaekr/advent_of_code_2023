@@ -20,3 +20,26 @@ from aoc.day_17 import clumsy_crucible
 from aoc.day_18 import lavaduct_lagoon
 from aoc.day_19 import aplenty
 from aoc.day_20 import pulse_propagation
+
+__all__ = [
+    "trebuchet",
+    "cube_conundrum",
+    "gear_ratios",
+    "scratchcards",
+    "if_you_give_a_seed_a_fertilizer",
+    "wait_for_it",
+    "camel_cards",
+    "haunted_wasteland",
+    "mirage_maintenance",
+    "pipe_maze",
+    "cosmic_expansion",
+    "hot_springs",
+    "point_of_incidence",
+    "parabolic_reflector_dish",
+    "lens_library",
+    "the_floor_will_be_lava",
+    "clumsy_crucible",
+    "lavaduct_lagoon",
+    "aplenty",
+    "pulse_propagation",
+]

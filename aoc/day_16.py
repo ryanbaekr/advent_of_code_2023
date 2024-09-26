@@ -3,7 +3,7 @@
 def the_floor_will_be_lava(layout: str, best: bool) -> int:
     """Take the layout and return the appropriate value"""
 
-    layout = [list(line) for line in layout.splitlines()]
+    parsed_layout = [list(line) for line in layout.splitlines()]
 
     symbol_maps = {
         "|": {
@@ -52,13 +52,11 @@ def the_floor_will_be_lava(layout: str, best: bool) -> int:
         "r": 1,
     }
 
-    def _helper(l_idx, c_idx, direction):
+    def _helper(l_idx: int, c_idx: int, direction: str) -> None:
         """Function to recurse with"""
 
-        nonlocal positions
-
         positions[f"{l_idx}c{c_idx}{direction}"] = True
-        direction = symbol_maps[layout[l_idx][c_idx]][direction]
+        direction = symbol_maps[parsed_layout[l_idx][c_idx]][direction]
 
         while len(direction) == 1:
             l_idx = l_idx + l_map[direction]
@@ -67,7 +65,7 @@ def the_floor_will_be_lava(layout: str, best: bool) -> int:
             if not (0 <= l_idx < 110 and 0 <= c_idx < 110) or positions.get(temp, False):
                 return
             positions[temp] = True
-            direction = symbol_maps[layout[l_idx][c_idx]][direction]
+            direction = symbol_maps[parsed_layout[l_idx][c_idx]][direction]
 
         for new_direction in direction:
             new_l_idx = l_idx + l_map[new_direction]
@@ -94,7 +92,7 @@ def the_floor_will_be_lava(layout: str, best: bool) -> int:
         starts = [(0, 0, "r")]
 
     for start in starts:
-        positions = {}
+        positions: dict[str, bool] = {}
         _helper(*start)
         result = max(result, len({pos[:-1] for pos in positions}))
 

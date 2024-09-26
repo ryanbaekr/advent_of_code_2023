@@ -17,7 +17,7 @@ def camel_cards(hands: str, as_wild: bool) -> int:
 
     hand_bid_map = {}
 
-    type_pools = {
+    type_pools: dict[int, list[str]] = {
          4: [],  # 5 unique - 1 max =  4 (high card)
          2: [],  # 4 unique - 2 max =  2 (one pair)
          1: [],  # 3 unique - 2 max =  1 (two pair)

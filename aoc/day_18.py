@@ -3,7 +3,7 @@
 def lavaduct_lagoon(dig_plan: str, rgb: bool) -> int:
     """Take the plan and return the appropriate value"""
 
-    dig_plan = dig_plan.splitlines()
+    parsed_dig_plan = dig_plan.splitlines()
 
     rgb_map = {
         "0": "R",
@@ -26,14 +26,14 @@ def lavaduct_lagoon(dig_plan: str, rgb: bool) -> int:
 
     perim = 2
 
-    for instruction in dig_plan:
+    for instruction in parsed_dig_plan:
         if rgb:
-            _, _, dur = instruction.split(" ")
-            rot = rgb_map[dur[-2]]
-            dur = int(dur[2:-2], 16)
+            _, _, dur_str = instruction.split(" ")
+            rot = rgb_map[dur_str[-2]]
+            dur = int(dur_str[2:-2], 16)
         else:
-            rot, dur, _ = instruction.split(" ")
-            dur = int(dur)
+            rot, dur_str, _ = instruction.split(" ")
+            dur = int(dur_str)
 
         l_inc, c_inc = rot_map[rot]
         l_pos += l_inc * dur

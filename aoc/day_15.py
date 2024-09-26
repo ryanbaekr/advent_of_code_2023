@@ -4,8 +4,8 @@ def lens_library(sequence: str, boxes: bool) -> int:
     """Take the sequence and return the appropriate value"""
 
     if boxes:
-        box_dict = {}
-        label_dict = {}
+        box_dict: dict[int, dict[str, int]] = {}
+        label_dict: dict[str, int] = {}
 
         for step in sequence.replace("\n", "").split(","):
             box = 0

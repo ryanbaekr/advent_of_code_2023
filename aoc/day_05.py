@@ -4,7 +4,7 @@ def if_you_give_a_seed_a_fertilizer(almanac: str, as_range: bool) -> int:
     """Take an almanac and return the appropriate value"""
 
     seed_ranges = []
-    temp_ranges = []
+    temp_ranges: list[tuple[int, int]] = []
     map_name = ""
 
     for line in almanac.splitlines():
@@ -25,22 +25,24 @@ def if_you_give_a_seed_a_fertilizer(almanac: str, as_range: bool) -> int:
             from_start = vals[1]
             from_stop = vals[1] + vals[2]
             rule = vals[0] - vals[1]
-            for seed_index, seed_range in enumerate(seed_ranges):
+            next_seed_ranges = []
+            for seed_range in seed_ranges:
                 if from_stop > seed_range[0] and from_start < seed_range[1]:
                     if from_start > seed_range[0] and from_stop < seed_range[1]:
-                        seed_ranges[seed_index] = (seed_range[0], from_start)
-                        seed_ranges.append((from_stop, seed_range[1]))
+                        next_seed_ranges.append((seed_range[0], from_start))
+                        next_seed_ranges.append((from_stop, seed_range[1]))
                         temp_ranges.append((from_start + rule, from_stop + rule))
                     elif from_start > seed_range[0]:
-                        seed_ranges[seed_index] = (seed_range[0], from_start)
+                        next_seed_ranges.append((seed_range[0], from_start))
                         temp_ranges.append((from_start + rule, seed_range[1] + rule))
                     elif from_stop < seed_range[1]:
-                        seed_ranges[seed_index] = (from_stop, seed_range[1])
+                        next_seed_ranges.append((from_stop, seed_range[1]))
                         temp_ranges.append((seed_range[0] + rule, from_stop + rule))
                     else:
-                        seed_ranges[seed_index] = False
                         temp_ranges.append((seed_range[0] + rule, seed_range[1] + rule))
-            seed_ranges = [seed_range for seed_range in seed_ranges if seed_range]
+                else:
+                    next_seed_ranges.append(seed_range)
+            seed_ranges = next_seed_ranges
     seed_ranges.extend(temp_ranges)
 
     locations = []

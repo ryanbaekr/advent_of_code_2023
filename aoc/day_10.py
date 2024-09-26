@@ -59,15 +59,11 @@ def pipe_maze(sketch: str) -> tuple[int, int]:
     for direction in ("u", "d", "l", "r"):
         position = start + direction_map[direction]
         if sketch[position] != "." and direction in symbol_maps[sketch[position]]:
-            connection = {
-                "distance": 1,
-                "direction": direction,
-                "position": position,
-            }
+            connection = (1, direction, position)
             connections.append(connection)
 
     for symbol in ("|", "-", "L", "J", "7", "F"):
-        if all((connection["direction"] in symbol_maps[symbol].values() for connection in connections)):
+        if all((connection[1] in symbol_maps[symbol].values() for connection in connections)):
             sketch_pt2[start] = symbol
             break
 
@@ -75,40 +71,32 @@ def pipe_maze(sketch: str) -> tuple[int, int]:
 
     loop = True
     while loop:
-        for connection in connections:
-            sketch_pt2[connection["position"]] = sketch[connection["position"]]
-            distance = connection["distance"] + 1
-            direction = symbol_maps[sketch[connection["position"]]][connection["direction"]]
-            position = connection["position"] + direction_map[direction]
+        for index, connection in enumerate(connections):
+            sketch_pt2[connection[2]] = sketch[connection[2]]
+            distance = connection[0] + 1
+            direction = symbol_maps[sketch[connection[2]]][connection[1]]
+            position = connection[2] + direction_map[direction]
             if position == last:
                 loop = False
                 break
-            connection["distance"] = distance
-            connection["direction"] = direction
-            connection["position"] = position
+            connections[index] = (distance, direction, position)
             last = position
 
     sketch_pt2[position] = sketch[position]
 
     start = "".join(sketch_pt2).find("F")
 
-    connection = {
-        "direction": "r",
-        "position": start + direction_map["r"],
-    }
+    connection_pt2 = ("r", start + direction_map["r"])
 
-    while connection["position"] != start:
-        position_cw = connection["position"] + direction_map[clockwise[connection["direction"]]]
+    while connection_pt2[1] != start:
+        position_cw = connection_pt2[1] + direction_map[clockwise[connection_pt2[0]]]
         if sketch_pt2[position_cw] == ".":
             sketch_pt2[position_cw] = "I"
-        direction = symbol_maps[sketch_pt2[connection["position"]]][connection["direction"]]
-        position = connection["position"] + direction_map[direction]
-        position_cw = connection["position"] + direction_map[clockwise[direction]]
+        direction = symbol_maps[sketch_pt2[connection_pt2[1]]][connection_pt2[0]]
+        position = connection_pt2[1] + direction_map[direction]
+        position_cw = connection_pt2[1] + direction_map[clockwise[direction]]
         if sketch_pt2[position_cw] == ".":
             sketch_pt2[position_cw] = "I"
-        connection["direction"] = direction
-        connection["position"] = position
+        connection_pt2 = (direction, position)
 
-    sketch_pt2 = re.sub(r"I(\.*I)*", "", "".join(sketch_pt2))
-
-    return distance, len(sketch) - len(sketch_pt2)
+    return distance, len(sketch) - len(re.sub(r"I(\.*I)*", "", "".join(sketch_pt2)))

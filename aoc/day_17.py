@@ -12,7 +12,7 @@ def clumsy_crucible(city_map: str, ultra: bool) -> int:
         min_dur = 1
         max_dur = 3
 
-    city_map = [[int(char) for char in line] for line in city_map.splitlines()]
+    parsed_city_map = [[int(char) for char in line] for line in city_map.splitlines()]
 
     loss_list = [(0, " ", 9, 0, 0)]
 
@@ -41,7 +41,7 @@ def clumsy_crucible(city_map: str, ultra: bool) -> int:
 
             if new_name not in seen:
                 prev = mins.get(new_name)
-                new_loss = loss + city_map[new_l_idx][new_c_idx]
+                new_loss = loss + parsed_city_map[new_l_idx][new_c_idx]
                 if prev is None or new_loss < prev:
                     mins[new_name] = new_loss
                     heapq.heappush(loss_list, (new_loss, new_rot, new_dur, new_l_idx, new_c_idx))
@@ -59,7 +59,7 @@ def clumsy_crucible(city_map: str, ultra: bool) -> int:
 
             if new_name not in seen:
                 prev = mins.get(new_name)
-                new_loss = loss + city_map[new_l_idx][new_c_idx]
+                new_loss = loss + parsed_city_map[new_l_idx][new_c_idx]
                 if prev is None or new_loss < prev:
                     mins[new_name] = new_loss
                     heapq.heappush(loss_list, (new_loss, new_rot, new_dur, new_l_idx, new_c_idx))
@@ -77,7 +77,7 @@ def clumsy_crucible(city_map: str, ultra: bool) -> int:
 
             if new_name not in seen:
                 prev = mins.get(new_name)
-                new_loss = loss + city_map[new_l_idx][new_c_idx]
+                new_loss = loss + parsed_city_map[new_l_idx][new_c_idx]
                 if prev is None or new_loss < prev:
                     mins[new_name] = new_loss
                     heapq.heappush(loss_list, (new_loss, new_rot, new_dur, new_l_idx, new_c_idx))
@@ -95,7 +95,7 @@ def clumsy_crucible(city_map: str, ultra: bool) -> int:
 
             if new_name not in seen:
                 prev = mins.get(new_name)
-                new_loss = loss + city_map[new_l_idx][new_c_idx]
+                new_loss = loss + parsed_city_map[new_l_idx][new_c_idx]
                 if prev is None or new_loss < prev:
                     mins[new_name] = new_loss
                     heapq.heappush(loss_list, (new_loss, new_rot, new_dur, new_l_idx, new_c_idx))

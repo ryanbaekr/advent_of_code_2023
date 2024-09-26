@@ -25,14 +25,14 @@ def _propagate(configuration: str, product: bool) -> int:
     """Process the button presses and return either the product or the number of presses"""
 
     modules = {}
-    sources = {}
+    sources: dict[str, list[str]] = {}
 
     for config in configuration.splitlines():
         type_name, destinations = config.split(" -> ")
         name = type_name[1:]
-        destinations = destinations.split(", ")
+        parsed_destinations = destinations.split(", ")
 
-        for dest in destinations:
+        for dest in parsed_destinations:
             try:
                 sources[dest].append(name)
             except KeyError:
@@ -40,14 +40,14 @@ def _propagate(configuration: str, product: bool) -> int:
 
         modules[name] = {
             "type": type_name[0],
-            "dest": destinations,
+            "dest": parsed_destinations,
         }
 
     presses = 0
     low_pulses = 0
     high_pulses = 0
 
-    state = {}
+    state: dict[str, bool] = {}
 
     while True:
         if product and presses == 1000:
@@ -57,12 +57,12 @@ def _propagate(configuration: str, product: bool) -> int:
         low_pulses += 1
 
         queue = ["roadcaster"]
-        trigger = {}
+        trigger: dict[str, list[str]] = {}
 
         while queue:
             next_state = state.copy()
-            next_queue = []
-            next_trigger = {}
+            next_queue: list[str] = []
+            next_trigger: dict[str, list[str]] = {}
 
             for module_name in queue:
                 if module_name not in modules:
