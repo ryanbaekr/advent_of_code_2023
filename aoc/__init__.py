@@ -20,6 +20,7 @@ from aoc.day_17 import clumsy_crucible
 from aoc.day_18 import lavaduct_lagoon
 from aoc.day_19 import aplenty
 from aoc.day_20 import pulse_propagation
+from aoc.day_21 import step_counter
 
 __all__ = [
     "trebuchet",
@@ -42,4 +43,5 @@ __all__ = [
     "lavaduct_lagoon",
     "aplenty",
     "pulse_propagation",
+    "step_counter",
 ]
