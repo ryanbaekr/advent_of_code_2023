@@ -21,6 +21,7 @@ from aoc.day_18 import lavaduct_lagoon
 from aoc.day_19 import aplenty
 from aoc.day_20 import pulse_propagation
 from aoc.day_21 import step_counter
+from aoc.day_22 import sand_slabs
 
 __all__ = [
     "trebuchet",
@@ -44,4 +45,5 @@ __all__ = [
     "aplenty",
     "pulse_propagation",
     "step_counter",
+    "sand_slabs",
 ]
