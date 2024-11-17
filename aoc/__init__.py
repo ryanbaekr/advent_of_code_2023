@@ -24,6 +24,7 @@ from aoc.day_21 import step_counter
 from aoc.day_22 import sand_slabs
 from aoc.day_23 import a_long_walk
 from aoc.day_24 import never_tell_me_the_odds
+from aoc.day_25 import snowverload
 
 __all__ = [
     "trebuchet",
@@ -50,4 +51,5 @@ __all__ = [
     "sand_slabs",
     "a_long_walk",
     "never_tell_me_the_odds",
+    "snowverload",
 ]
